@@ -1,0 +1,284 @@
+1.float型float f=3.4是否正确?
+不正确
+
+2.当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回变化后的结果，那么这里到底是值传递还是引用传递?
+值传递
+
+3.在Java中一个类被声明为final类型，表示了什么意思?
+表示该类不可以被继承
+
+4.Error与Exception有什么区别?
+Error表示系统级的错误和程序不必处理的异常， 
+Exception表示需要捕捉或者需要程序进行处理的异常。
+
+5.谈谈final, finally的区别。
+final 用于声明属性，方法和类，分别表示属性不可变，方法不可覆盖，类不可继承。 
+finally是异常处理语句结构的一部分，表示总是执行。 
+
+6.String s = new String(“xyz“);创建了几个String Object?
+两个对象。一个是“xyx”，一个是指向“xyx”的引用对象s
+
+7.short s1 = 1; s1 = s1 + 1;有什么错? short s1 = 1; s1 += 1;有什么错?
+当然有错误，short占2个字节，int占4个字节，short型变量+上int型值计算结果是int型，占4个字节，然后付给一个short型变量s1，就要丢失2个字节的精度，这是不容许的。
+
+8.数组有没有length()这个方法? String有没有length()这个方法?
+数组没有length()这个方法，有length的属性。String有有length()这个方法。
+
+9.Overload和Override的区别
+Override是重写：方法名称、参数个数，类型，顺序，返回值类型都是必须和父类方法一致的。它的关系是父子关系
+Overload是重载:方法名称不变，其余的都是可以变更的。它的关系是同一个类，同一个方法名，不同的方法参数或返回值。
+
+10.abstract class和interface有什么区别?
+interface是接口，所有的方法都是抽象方法，成员变量是默认的public static final 类型。接口不能实例化自己。
+abstract class是抽象类，至少包含一个抽象方法的累叫抽象类，抽象类不能被自身实例化，并用abstract关键字来修饰
+
+11.构造器Constructor是否可被override?
+构造器Constructor不能被继承，因此不能重写Overriding，但可以被重载Overloading。
+
+12.是否可以继承String类?
+不可以,因为String是final类型,不可以继承,不可以修改
+
+13.请问输出结果？
+FatherClass Create
+FatherClass Create
+ChildClass Create
+
+14.多线程有几种实现方法,都是什么?同步有几种实现方法,都是什么?
+创建一个线程有两个办法：
+1.直接继承thread类
+2.实现runnable接口
+在自己的新类中一定要重写run()方法，
+启动线程用 类对象名.start()
+同步就在方法前加上synchronized关键字
+
+15.请说出你所知道的线程同步的方法
+wait():使一个线程处于等待状态，并且释放所持有的对象的lock。
+sleep():使一个正在运行的线程处于睡眠状态，是一个静态方法，调用此方法要捕捉InterruptedException异常。
+notify():唤醒一个处于等待状态的线程，注意的是在调用此方法的时候，并不能确切的唤醒某一个等待状态的线程，而是由JVM确定唤醒哪个线程，而且不是按优先级。
+Allnotity():唤醒所有处入等待状态的线程，注意并不是给所有唤醒线程一个对象的锁，而是让它们竞争。
+
+16.当一个线程进入一个对象的一个synchronized方法后，其它线程是否可进入此对象的其它方法?
+肯定不可以。必须等这一个线程执行完之后，下一个线程才能进入到这个synchronized方法。希望能帮到你！
+
+17.从下列选项中选择两个正确的答案放在 line 3 中
+CE
+
+18.STRING与STRINGBUFFER的区别
+String和StringBuffer主要有2个区别：
+（1）String类对象为不可变对象，一旦你修改了String对象的值，隐性重新创建了一个新的对象，释放原String对象，StringBuffer类对象为可修改对象，可以通过append()方法来修改值
+（2）String类对象的性能远不如StringBuffer类。
+
+19.Java类实现序例化的方法是?
+Serializable。
+
+20.Collection框架中实现比较要实现什么接口?
+要实现 comparable 接口,把你的自定义类实现以上接口，实现 compareTo 方法就OK了
+
+21.介绍Java中的Collection 框架结构
+collection:List列表，set列表
+
+map:hashtable,hashmap,TreeMap
+
+Collection:是单列集合；
+
+List:元素是有序的，可重复的；
+
+22.写一个满足Singleton模式的类出来。
+public class Singleton {
+private Singleton(){}
+//在自己内部定义自己一个实例，是不是很奇怪?
+//注意这是private 只供内部调用
+private static Singleton instance = new Singleton();
+//这里提供了一个供外部访问本class的静态方法，可以直接访问
+public static Singleton getInstance() {
+return instance;
+}
+}
+
+23.遍历某文件夹下的所有文件目录及文件 (文件夹从命令行输入)
+def getAllFiles(path):
+   
+ for file in os.listdir(path):  # 遍历当前目录下所有文件
+        
+filePath = os.path.join(path, file)  # 生成当前目录下文件的绝对路径
+        
+if os.path.isfile(filePath):  # 如果这个路径是文件而不是文件夹则找到一个文件
+            
+print("get file: ", filePath)
+        
+else:   # 如果这个路径是文件夹，则递归调用此函数
+            
+getAllFiles(filePath)
+
+24.编写一个截取字符串的函数，输入为一个字符串和字节数，输出为按字节截取的字符串。 但是要保证汉字不被截半个，如“我ABC”4，应该截为“我AB”，输入“我ABC汉DEF”，6，应该输出为“我ABC”而不是“我ABC+汉的半个”
+
+public class AA {
+ 
+
+	public static void main(String[] args) {
+	
+	String srcStr1 = "我ABC";
+	
+	String srcStr2 = "我ABC汉DEF";
+ 
+	
+	splitString(srcStr1, 3);
+	
+	splitString(srcStr2, 5);
+	
+}
+ 
+
+	public static void splitString(String src, int len) {
+	
+	int byteNum = 0;
+ 
+	
+	if (null == src) {
+		
+	System.out.println("The source String is null!");
+		
+	return;
+	
+	}
+ 
+		
+	
+	byte bt[]=null;
+	
+	try {
+		
+	bt = src.getBytes("GBK");
+	byteNum = bt.length;
+		 // 将String转换成byte字节数组
+ 
+	
+	if (len > byteNum) {
+		
+	len = byteNum;
+	
+	}
+ 
+	
+	int num=0;
+		// 判断是否出现了截半，截半的话字节对于的ASC码是小于0的值
+	
+	if (bt[len-1] < 0) {
+		
+	for (int j=0;j<=len-1;j++)
+		
+	{
+			
+	if (bt[j]<0)
+		
+		{
+				
+	num++;
+			
+		num = num%2;
+		
+		}
+			
+	else
+			
+	{
+			
+		num=0;
+		
+		}
+	
+		}
+			
+	
+		if (num==0)
+		
+	{
+			
+	String subStrx = new String(bt, 0, len,"GBK");//前包括后不包括
+				System.out.println("subStrx==" + subStrx);
+		
+	}
+		
+	else
+			{
+			
+	String subStrx = new String(bt, 0, len-1,"GBK");
+				System.out.println("subStrx==" + subStrx);
+	
+		}
+			
+	
+	} else {
+		
+	String subStrx = new String(bt, 0, len,"GBK");
+		
+	System.out.println("subStrx==" + subStrx);
+	
+	}
+	
+	} catch (Exception e) {
+		
+	// TODO Auto-generated catch block
+		
+	e.printStackTrace();
+		
+}
+	
+}
+ 
+
+}
+
+25.用Java SOCKET编程，实现简单的Echo功能
+如：客户端从键盘输入 hi (当用户输出exit 退出程序)，服务端响应为 hi(服务器要求为多线程)
+
+import java.io.*; 
+import java.net.*; 
+
+public class MyServer { 
+ public static void main(String[] args) throws IOException{ 
+ ServerSocket server=new ServerSocket(5678); 
+
+ while (true) {
+ Socket client=server.accept(); 
+ BufferedReader in=new BufferedReader(new InputStreamReader(client.getInputStream())); 
+ PrintWriter out=new PrintWriter(client.getOutputStream()); 
+ while(true){ 
+ String str=in.readLine(); 
+ System.out.println(str); 
+ out.println("has receive...."); 
+ out.flush(); 
+ if(str.equals("exit")) 
+ break; 
+ } 
+ client.close(); 
+ }
+ } 
+} 
+
+// 客户端
+import java.net.*; 
+import java.io.*; 
+
+public class Client{ 
+ static Socket server; 
+
+ public static void main(String[] args)throws Exception{ 
+ server=new Socket(InetAddress.getLocalHost(),5678); 
+ BufferedReader in=new BufferedReader(new InputStreamReader(server.getInputStream())); 
+ PrintWriter out=new PrintWriter(server.getOutputStream()); 
+ BufferedReader wt=new BufferedReader(new InputStreamReader(System.in)); 
+
+ while(true){ 
+ String str=wt.readLine(); 
+ out.println(str); 
+ out.flush(); 
+ if(str.equals("end")){ 
+ break; 
+ } 
+ System.out.println(in.readLine()); 
+ } 
+
+ server.close(); 
+ } 
+}
